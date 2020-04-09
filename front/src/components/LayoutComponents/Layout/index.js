@@ -5,9 +5,9 @@ import {BackTop, Layout as AntLayout} from "antd";
 import Routes from '../../../routes';
 
 
-
 import {enquireScreen, unenquireScreen} from "enquire-js/index";
 import {ContainerQuery} from "react-container-query";
+import Content from '../Content'
 import classNames from 'classnames';
 
 const AntContent = AntLayout.Content;
@@ -86,6 +86,11 @@ class Layout extends React.Component {
          <div className={classNames(params)}>
            <AntLayout>
              <Routes/>
+             <AntLayout>
+               <AntContent>
+                 <Content/>
+               </AntContent>
+             </AntLayout>
            </AntLayout>
          </div>
        )}
