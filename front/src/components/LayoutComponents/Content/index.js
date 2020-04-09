@@ -39,7 +39,7 @@ class AppContent extends React.Component{
       <div className="utils__loadingPage"/>
     ) : (
       <div className="utils__content" >
-        dd
+        {content}
       </div>
     );
   }

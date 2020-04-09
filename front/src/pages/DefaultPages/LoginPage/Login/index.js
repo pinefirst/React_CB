@@ -1,19 +1,17 @@
-import React from "react";
+import React from 'react'
+import LoginForm from './LoginForm'
+import './style.scss'
 
-import './style.scss';
-
-class Login extends React.Component{
+class Login extends React.Component {
 
   state = {
-    backgroundImage:'url(resources/images/login/4.jpb)',
-    fullSize:true
+    backgroundImage: 'url(resources/images/login/2.jpg)',
+    fullSize: true,
   }
 
   componentDidMount() {
-
     document.getElementsByTagName('body')[0].style.overflow = 'hidden'
   }
-
 
   componentWillUnmount() {
     document.getElementsByTagName('body')[0].style.overflow = ''
@@ -55,7 +53,7 @@ class Login extends React.Component{
                     <strong>Please log in</strong>
                   </h4>
                   <br />
-                  {/*<LoginForm email={this.state.restoredEmail}/>*/}
+                  <LoginForm email={this.state.restoredEmail}/>
                 </div>
                 <div className="login__block__sidebar">
                   <h4 className="login__block__sidebar__title text-white">
@@ -98,8 +96,7 @@ class Login extends React.Component{
           </ul>
         </div>
       </div>
-    );
+    )
   }
 }
-
 export default Login
