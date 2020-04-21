@@ -21,7 +21,7 @@ const loadableRoutes = {
     component:loadable(() => import('pages/DefaultPages/LoginPage')),
   },
   '/consolesPage':{
-    component:loadable(() => import('pages/DefaultPages/LoginPage')),
+    component:loadable(() => import('pages/ConsolePage')),
   },
 
   '/auth/register': {

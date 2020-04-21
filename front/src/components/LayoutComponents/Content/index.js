@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {isEmpty} from 'lodash';
 
 import {setUpdatingContent} from "../../../ducks/app";
+import Breadcrumb from "../Breadcrumb";
 
 const mapStateToProps = (state, props) => ({
   isUpdatingContent: state.app.isUpdatingContent,
@@ -41,6 +42,7 @@ class AppContent extends React.Component{
       <div className="utils__loadingPage" />
     ):(
       <div className="utils__content" >
+        <Breadcrumb name={pathName} />
         {content}
       </div>
     )
