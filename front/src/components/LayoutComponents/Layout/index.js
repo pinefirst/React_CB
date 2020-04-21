@@ -8,6 +8,7 @@ import className from 'classnames';
 
 import Routes from '../../../routes';
 import Content from '../../../components/LayoutComponents/Content';
+import Toolbar from "../Toolbar";
 
 const AntContent = AntLayout.Content;
 const AntHeader = AntLayout.Header;
@@ -87,6 +88,9 @@ class Layout extends React.Component{
       <ContainerQuery query={query}>
         {params => (
           <div className={className(params)} >
+            <AntHeader>
+              <Toolbar/>
+            </AntHeader>
             <Routes/>
             <Content/>
           </div>
