@@ -148,6 +148,13 @@ export function register(firstName, lastName, email, password, dispatch) {
 }
 
 
+export function login(username, password, dispatch) {
+
+
+
+}
+
+
 export const logout = () => (dispatch, getState) => {
   dispatch(
     setUserState({
