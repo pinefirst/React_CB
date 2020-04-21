@@ -1,18 +1,17 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropType from 'prop-types';
 import {Spinner} from "react-redux-spinner";
 import {BackTop, Layout as AntLayout} from "antd";
-import Routes from '../../../routes';
-
-
 import {enquireScreen, unenquireScreen} from "enquire-js/index";
 import {ContainerQuery} from "react-container-query";
-import Content from '../Content'
-import classNames from 'classnames';
+import className from 'classnames';
+
+import Routes from '../../../routes';
+import Content from '../../../components/LayoutComponents/Content';
 
 const AntContent = AntLayout.Content;
 const AntHeader = AntLayout.Header;
-const AntFooter = AntLayout.Footer;
+const AntFooter  = AntLayout.Footer;
 
 const query = {
   'screen-xs': {
@@ -39,9 +38,9 @@ const query = {
   },
 }
 
-let isMobile;
+let isMobile
 enquireScreen(b => {
-  isMobile = b
+  isMobile = b;
 })
 
 let contentBuffer = {
@@ -50,53 +49,51 @@ let contentBuffer = {
 }
 
 
-class Layout extends React.Component {
+class Layout extends React.Component{
   static childContextTypes = {
-    getContentBuffer:PropTypes.func,
-    setContentBuffer:PropTypes.func,
+    getContentBuffer:PropType.func,
+    setContentBuffer:PropType.func,
   }
+
   state = {
     isMobile,
   }
 
-  getChildContext() {
-    return {
+  getChildContext(){
+    return{
       getContentBuffer: () => contentBuffer,
-      setContentBuffer: ({ pathName, content }) => (contentBuffer = { pathName, content }),
+      setContentBuffer: ({pathName, content}) => (contentBuffer = {pathName, content}),
     }
   }
+
 
   componentDidMount() {
     this.enquireHandler = enquireScreen(mobile => {
       this.setState({
-        isMobile:mobile,
+        isMobile:mobile
       })
     })
   }
+
 
   componentWillUnmount() {
     unenquireScreen(this.enquireHandler)
   }
 
+
   render() {
-    const isMobile = !!this.state.isMobile
+    const isMobile = !!this.state.isMobile;
     return(
-     <ContainerQuery query={query}>
-       {params => (
-         <div className={classNames(params)}>
-           <AntLayout>
-             <Routes/>
-             <AntLayout>
-               <AntContent>
-                 <Content/>
-               </AntContent>
-             </AntLayout>
-           </AntLayout>
-         </div>
-       )}
-     </ContainerQuery>
+      <ContainerQuery query={query}>
+        {params => (
+          <div className={className(params)} >
+            <Routes/>
+            <Content/>
+          </div>
+        )}
+      </ContainerQuery>
     )
   }
 }
 
-export  default Layout
+export default Layout

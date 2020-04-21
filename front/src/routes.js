@@ -1,8 +1,8 @@
 import React from "react";
-import {Route} from "react-router-dom";
-import {ConnectedSwitch} from "./reactRouterConnected";
+import {Route} from 'react-router-dom';
+import {ConnectedSwitch} from './reactRouterConnected';
 import Loadable from 'react-loadable';
-import Page from "./components/LayoutComponents/Page";
+
 import NotFoundPage from "./pages/DefaultPages/NotFoundPage";
 import HomePage from "./pages/DefaultPages/HomePage";
 
@@ -16,22 +16,27 @@ const loadable = loader =>
 
 
 const loadableRoutes = {
+
   '/login':{
     component:loadable(() => import('pages/DefaultPages/LoginPage')),
   },
-  '/auth/register' : {
-    component: loadable(() => import('pages/DefaultPages/RegisterPage'))
-  }
+  '/consolesPage':{
+    component:loadable(() => import('pages/DefaultPages/LoginPage')),
+  },
+
+  '/auth/register': {
+    component: loadable(() => import('pages/DefaultPages/RegisterPage')),
+  },
 }
 
 
-class Routes extends React.Component {
+class Routes extends React.Component{
+
   timeoutId = null;
 
   componentDidMount() {
     this.timeoutId = setTimeout(
-      () => Object.keys(loadableRoutes).forEach(path => loadableRoutes[path].component.preload()),
-      5000,
+      () => Object.keys(loadableRoutes).forEach(path=>loadableRoutes[path].component.preload()),5000,
     )
   }
 
@@ -47,14 +52,12 @@ class Routes extends React.Component {
         <Route exact path="/" component={HomePage} />
         {Object.keys(loadableRoutes).map(path => {
           const {exact, ...props} = loadableRoutes[path]
-          props.exact = exact === void 0 || exact || false // set true as default
+          props.exact = exact === void 0 || exact || false
           return <Route key={path} path={path} {...props} />
         })}
         <Route
           render={() => {
-            <Page>
-              <NotFoundPage/>
-            </Page>
+            <NotFoundPage/>
           }}
         />
       </ConnectedSwitch>
@@ -64,5 +67,3 @@ class Routes extends React.Component {
 
 export {loadableRoutes}
 export default Routes
-
-

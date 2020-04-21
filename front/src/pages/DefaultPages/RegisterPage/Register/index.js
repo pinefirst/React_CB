@@ -1,38 +1,39 @@
-import React from "react";
-import './style.scss';
+import React from 'react'
+import {Button} from 'antd'
 
+import RegisterForm from "./RegisterForm";
+import './style.scss'
 
-class Register extends React.Component{
-
+class Register extends React.Component {
   state = {
-    backgroundImage:'url(resources/images/login/3.jpg)',
+    backgroundImage: 'url(resources/images/login/4.jpg)',
     fullSize: true,
   }
 
   generateBackground = () => {
     let {backgroundImage} = this.state
 
-    let min = 1;
-    let max = 5;
-    let pickNumber = Math.floor(Math.random() * (max - min + 1) + min)
-    backgroundImage = 'url(resources/images/login/' + pickNumber + '.jpg';
+    let min = 1
+    let max = 5
+    let picNumber = Math.floor(Math.random() * (max - min + 1)) + min
+    backgroundImage = 'url(resources/images/login/' + picNumber + '.jpg)'
     this.setState({
       backgroundImage: backgroundImage,
     })
   }
 
-
   switchSize = () => {
     let {fullSize} = this.state
-    fullSize = !fullSize;
+    fullSize = !fullSize
     this.setState({
       fullSize: fullSize,
     })
   }
 
   render() {
-    const {backgroundImage, fullSize} = this.state;
-    return(
+    const {backgroundImage, fullSize} = this.state
+
+    return (
       <div
         className={fullSize === false ? 'login' : 'login login--fullscreen'}
         style={{backgroundImage: backgroundImage}}
@@ -68,17 +69,16 @@ class Register extends React.Component{
                     <strong>Please Register</strong>
                   </h4>
                   <br/>
-                  {/*<RegisterForm/>*/}
+                  <RegisterForm/>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div className="login__footer text-center">
-
         </div>
       </div>
-    );
+    )
   }
 }
 

@@ -1,29 +1,29 @@
-import React from 'react'
-import LoginForm from './LoginForm'
+import React from "react";
 import './style.scss'
 
-class Login extends React.Component {
+import LoginForm from "./LoginForm";
+
+class Login extends React.Component{
 
   state = {
-    backgroundImage: 'url(resources/images/login/2.jpg)',
-    fullSize: true,
+    backgroundImage:'url(resources/images/login/4.jpg)',
+    fullSize:true,
   }
 
   componentDidMount() {
     document.getElementsByTagName('body')[0].style.overflow = 'hidden'
   }
 
+
   componentWillUnmount() {
     document.getElementsByTagName('body')[0].style.overflow = ''
   }
 
+
   render() {
     const {backgroundImage, fullSize} = this.state;
-    return (
-      <div
-        className={fullSize === false ? 'login' : 'login login--fullscreen'}
-        style={{ backgroundImage: backgroundImage }}
-      >
+    return(
+      <div className={fullSize === false ? 'login':'login login--fullscreen'} style={{backgroundImage: backgroundImage}} >
         <div className="login__header">
           <div className="row">
             <div className="col-lg-8">
@@ -53,7 +53,7 @@ class Login extends React.Component {
                     <strong>Please log in</strong>
                   </h4>
                   <br />
-                  <LoginForm email={this.state.restoredEmail}/>
+                  <LoginForm/>
                 </div>
                 <div className="login__block__sidebar">
                   <h4 className="login__block__sidebar__title text-white">
@@ -99,4 +99,6 @@ class Login extends React.Component {
     )
   }
 }
-export default Login
+
+
+export default Login;

@@ -1,24 +1,25 @@
-import React from 'react'
-import Page from './../../../components/LayoutComponents/Page'
-import Helmet from 'react-helmet'
-import Login from './Login';
+import React from "react";
+import Helmet from 'react-helmet';
 
+import Page from "../../../components/LayoutComponents/Page";
+import Login from "./Login";
 
-class LoginPage extends React.Component {
+class LoginPage extends React.Component{
+
   static defaultProps = {
-    pathName: 'Login',
-    roles: ['guest'],
+    pathName:'Login',
+    roles:['guest'],
   }
 
   render() {
-    const { match, ...props } = this.props
-    return (
-      <Page {...props}>
+    const {match, ...props} = this.props;
+    return(
+      <Page {...props} >
         <Helmet title="Login" />
-        <Login match={match}/>
+        <Login/>
       </Page>
     )
   }
 }
 
-export default LoginPage
+export default LoginPage;

@@ -1,24 +1,22 @@
-import React from "react";
-import Page from "../../../components/LayoutComponents/Page";
-import Helmet from 'react-helmet';
-import Register from './Register';
+import React from 'react'
+import Page from './../../../components/LayoutComponents/Page'
+import Helmet from 'react-helmet'
+import Register from './Register'
 
-
-class RegisterPage extends React.Component{
-
+class RegisterPage extends React.Component {
   static defaultProps = {
-    pathName:'Register',
-    roles:['guest'],
+    pathName: 'Register',
+    roles: ['guest'],
   }
 
   render() {
     const props = this.props
-    return(
-      <Page {...props} >
+    return (
+      <Page {...props}>
         <Helmet title="Register" />
-        <Register/>
+        <Register />
       </Page>
-    );
+    )
   }
 }
 

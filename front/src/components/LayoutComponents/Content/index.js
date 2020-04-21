@@ -1,48 +1,51 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {setUpdatingContent} from "../../../ducks/app";
 import {isEmpty} from 'lodash';
 
+import {setUpdatingContent} from "../../../ducks/app";
 
 const mapStateToProps = (state, props) => ({
   isUpdatingContent: state.app.isUpdatingContent,
-});
+})
+
+
 @connect(mapStateToProps)
 
 class AppContent extends React.Component{
   static contextTypes = {
-    getContentBuffer:PropTypes.func,
+    getContentBuffer: PropTypes.func,
   }
 
-  // node : HTMLElement,
 
-  shouldComponentUpdate(nextProps : {isUpdatingContent:boolean}) {
+  shouldComponentUpdate(nextProps : {isUpdatingContent : boolean}, nextState, nextContext) {
     if (this.props.isUpdatingContent && !nextProps.isUpdatingContent){
       return false;
     }
-    return true;
+    return  true;
   }
 
 
-  componentDidUpdate() {
-    const {isUpdatingContent, dispatch} = this.props
-    if(isUpdatingContent){
-      dispatch(setUpdatingContent(false));
+  componentDidMount() {
+    const {isUpdatingContent, dispatch} = this.props;
+    if (isUpdatingContent){
+      dispatch(setUpdatingContent(false))
     }
   }
+
 
   render() {
     const {getContentBuffer} = this.context;
     const {pathName, content} = getContentBuffer();
-    return isEmpty(content)? (
-      <div className="utils__loadingPage"/>
-    ) : (
+    return isEmpty(content)?(
+      <div className="utils__loadingPage" />
+    ):(
       <div className="utils__content" >
         {content}
       </div>
-    );
+    )
   }
 }
+
 
 export default AppContent;

@@ -1,20 +1,18 @@
 import cookie from 'react-cookie';
 
-export const API_URL = 'http://localhost:9002/api';
-
+export const API_URL = 'http://localhost:9003/api';
 export const CLIENT_ROOT_URL = 'http://localhost:3001';
+export const  Content_URL = 'https://ggconnectapi.herokuapp.com/contentful';
 
-export const Content_URL = 'https://ggconnectapi.herokuapp.com/contentful';
-
-export const AUTH_USER  = 'auth_user',
+export const AUTH_USER = 'auth_user',
   UNAUTH_USER = 'unauth_user',
-  AUTh_ERROR = 'auth_error',
+  AUTH_ERROR = 'auth_error',
   FORGOT_PASSWORD_REQUEST = 'forgot_password_request',
   RESET_PASSWORD_REQUEST = 'reset_password_request',
   PROTECTED_TEST = 'protected_test';
 
-export const FETCH_USER = 'fetch_user', ERROR_RESPONSE = 'error_response';
-
+export const FETCH_USER = 'fetch_user',
+  ERROR_RESPONSE = 'error_response';
 
 export const FETCH_CONVERSATIONS = 'fetch_conversations',
   FETCH_RECIPIENTS = 'fetch_recipients',
@@ -142,31 +140,29 @@ export const CREATE_CUSTOMER = 'create_customer',
   BILLING_ERROR = 'billing_error',
   CHANGE_SUBSCRIPTION = 'change_subscription';
 
+export function logoutUser(error) {
+  return function (dispatch) {
+    dispatch({type:UNAUTH_USER, payload:error || ''});
+    cookie.remove('token', {path:'/'});
+    cookie.remove('user', {path: '/'});
+
+    window.location.href = `${CLIENT_ROOT_URL}/login`;
+  }
+}
+
 
 export function errorHandler(dispatch, error, type) {
-  console.log('Error type', type);
+  console.log('Error type :', type);
   console.log(error);
 
-  let errorMessage = error.response?error.response.data:error;
-
+  let errorMessage = error.response ? error.response.data:error;
   if (error.status === 401 || error.response.status === 401){
-    errorMessage = 'You are not authorized to do this.';
+    errorMessage = 'You are not authorized to do this';
     return dispatch(logoutUser(errorMessage));
   }
 
   dispatch({
     type,
-    payload:errorMessage,
+    payload: errorMessage,
   });
-}
-
-
-export function logoutUser(error) {
-  return function (dispatch) {
-    dispatch({type: UNAUTH_USER, payload: error || ''});
-    cookie.remove('token', {path:'/'});
-    cookie.remove('user',{path: '/'});
-
-    window.location.href = `${CLIENT_ROOT_URL}/login`;
-  };
 }
