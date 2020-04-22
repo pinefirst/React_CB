@@ -5,6 +5,7 @@ import Loadable from 'react-loadable';
 
 import NotFoundPage from "./pages/DefaultPages/NotFoundPage";
 import HomePage from "./pages/DefaultPages/HomePage";
+import Page from "./components/LayoutComponents/Page";
 
 
 const loadable = loader =>
@@ -47,18 +48,20 @@ class Routes extends React.Component{
   }
 
   render() {
-    return(
+    return (
       <ConnectedSwitch>
         <Route exact path="/" component={HomePage} />
         {Object.keys(loadableRoutes).map(path => {
-          const {exact, ...props} = loadableRoutes[path]
-          props.exact = exact === void 0 || exact || false
+          const { exact, ...props } = loadableRoutes[path]
+          props.exact = exact === void 0 || exact || false // set true as default
           return <Route key={path} path={path} {...props} />
         })}
         <Route
-          render={() => {
-            <NotFoundPage/>
-          }}
+          render={() => (
+            <Page>
+              <NotFoundPage />
+            </Page>
+          )}
         />
       </ConnectedSwitch>
     )

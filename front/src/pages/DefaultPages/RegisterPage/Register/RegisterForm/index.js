@@ -99,7 +99,7 @@ class RegisterFormComponent extends React.Component{
           <Button type="primary" htmlType="submit" className="width-10" >
             Sign Up
           </Button>
-          <a href="/login" className="width-100 ant-btn width-140 ant-btn-primary float-right"
+          <a href="/#login" className="width-100 ant-btn width-140 ant-btn-primary float-right"
              style={{lineHeight: '30px'}}>
             Login
           </a>
