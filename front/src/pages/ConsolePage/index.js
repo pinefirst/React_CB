@@ -2,6 +2,7 @@ import React from "react";
 import Page from "../../components/LayoutComponents/Page";
 import Helmet from 'react-helmet';
 
+import Consoles from "./Console";
 
 class ConsolePages extends React.Component{
 
@@ -16,7 +17,7 @@ class ConsolePages extends React.Component{
     return(
       <Page {...props}>
         <Helmet title="ConsoleTable" />
-        <di>ConsolePage</di>
+        <Consoles/>
       </Page>
     )
   }
