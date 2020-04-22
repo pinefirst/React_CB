@@ -4,19 +4,21 @@ const ROLE_OWNER = require('./constants').ROLE_OWNER;
 const ROLE_ADMIN = require('./constants').ROLE_ADMIN;
 
 
+// Set user info from request
 exports.setUserInfo = function setUserInfo(request) {
     const getUserInfo = {
-        _id:request._id,
-        firstName: request.profile.firstName,
+        _id: request._id,
+        firstName: request.profile.firstName,                   // from model
         lastName: request.profile.lastName,
-        email:request.email,
-        role:request.role,
-        confirmEmail:request.confirmEmail,
-        SellerId:request.SellerId || '',
-        seller_config:request.seller_config || {},
+        email: request.email,
+        role: request.role,
+        confirmEmail: request.confirmEmail,
+        SellerId: request.SellerId || '',
+        seller_config: request.seller_config || {},
     };
+
     return getUserInfo;
-}
+};
 
 exports.getRole = function getRole(checkRole) {
     let role;

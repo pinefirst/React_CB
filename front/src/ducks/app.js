@@ -150,7 +150,39 @@ export function register(firstName, lastName, email, password, dispatch) {
 
 export function login(username, password, dispatch) {
 
+   let errors = [];
+   axios.post(`${API_URL}/auth/login`, {email:username,password:password})
+     .then((response) => {
+       cookie.save('token', response.data.token,{path:'/'});
+       cookie.save('user', response.data.user,{path:'/'});
+       cookie.save('uid', response.data.user['_id'], {path:'/'});
+       window.localStorage.setItem('app.Authorization','');
+       window.localStorage.setItem('app.Role','administrator');
+       dispatch(_setHideLogin(true));
+       dispatch(push('/consolesPage'));
+       notification.open({
+         type:'success',
+         message:'You have successfully logged in!',
+         description:'Welcome to Login!',
+       })
+       return true;
+     })
+     .catch((error) => {
+       dispatch(_setFrom(''));
 
+       if (error && error.response){
+         var resStatus = error.response.status;
+         if (resStatus === 401){
+           errors.push({code:401, message:'Login Failed!', description:'You have endtered wroing username/password, Please try again!'});
+           notification.open({
+             type:'warning',
+             message:'Login Failed',
+             description:'You have entered wrong username/password. please try again!',
+           })
+           return errors;
+         }
+       }
+     });
 
 }
 

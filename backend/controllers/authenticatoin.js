@@ -14,6 +14,19 @@ function generateToken(user){
 }
 
 
+exports.login = function (req, res, next) {
+    console.log('login route');
+    console.log(req.body);
+    console.log(req.user);
+    const userInfo = setUserInfo(req.user);
+
+    res.status(200).json({
+        token: `JWT ${generateToken(userInfo)}`,
+        user: userInfo
+    });
+};
+
+
 exports.register = function (req, res, next) {
     const email = req.body.email;
     const firstName = req.body.firstName;
@@ -60,3 +73,5 @@ exports.register = function (req, res, next) {
         })
     })
 }
+
+
