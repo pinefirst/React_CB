@@ -27,7 +27,7 @@ class AppContent extends React.Component{
   }
 
 
-  componentDidMount() {
+  componentDidUpdate() {
     const {isUpdatingContent, dispatch} = this.props;
     if (isUpdatingContent){
       dispatch(setUpdatingContent(false))
