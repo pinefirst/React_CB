@@ -17,11 +17,22 @@ const EditableCell = ({ editable, value, onChange }) => (
   </div>
 )
 
+const defaultPagination = {
+  pageSizeOptions:["10","25","50"],
+  showSizeChanger:true,
+  current:1,
+  size:"small",
+  showTotal:(total) => `Total ${total} items`,
+  total:0,
+  pageSize:10
+};
+
 
 class EditableTable extends React.Component{
 
   state = {
     data:[],
+    pager:{...defaultPagination},
   };
 
   constructor(props){
@@ -117,8 +128,9 @@ class EditableTable extends React.Component{
   }
 
   render() {
+    const {pager} = this.state;
     return(
-      <Table bordered columns={this.columns} dataSource={this.state.data}
+      <Table bordered columns={this.columns} dataSource={this.state.data} pagination={pager}
       />
     )
   }
