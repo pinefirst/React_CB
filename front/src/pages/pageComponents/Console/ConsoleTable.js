@@ -18,6 +18,13 @@ export default class ConsolesTable extends Component{
   state = {
     id:'',
     showAddNewModal:false,
+    contentfulState: 0,
+    imageUrl: 'https://',
+    count: 0,
+    priority: 0,
+    tag: '',
+    tagTitle: '',
+    title: '',
   }
 
 
@@ -33,13 +40,14 @@ export default class ConsolesTable extends Component{
 
   _renderTable(filter){
     const allData = this.props.consoles;
+    const deleteConsole = this.props.deleteConsole;
     let data = allData
-    return <EditableTable dataSource={data}  />
+    return <EditableTable dataSource={data} deleteConsole={deleteConsole} updateConsole={this.props.updateConsole} />
   }
 
   render() {
 
-    const {showAddNewModal} = this.state
+    const {showAddNewModal, title, count, contentfulState, imageUrl, tag, tagTitle, priority, id} = this.state;
     return(
       <Card title={<h2>Consoles</h2>}>
         <Button type="primary" style={{marginBottom:'20px'}} onClick={this.showAddNewModalFn} >

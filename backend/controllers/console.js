@@ -31,3 +31,50 @@ exports.getConsoles = function (req, res, next) {
         }
     })
 }
+
+
+exports.delete = function (req, res, next) {
+
+    const fId = req.params.id;
+    Consoles.findByIdAndRemove(fId, (err, deletedConsole) => {
+        if (err){
+            console.log(err);
+        }
+        Consoles.find().exec(function (err, consoles) {
+            if (err){
+                console.log(err);
+            }
+            return res.status(200).json({consoles:consoles});
+        });
+    });
+}
+
+
+exports.update = function (req, res, next) {
+    Consoles.findById(req.body._id, function (err, tData) {
+        if (err){
+            res.send(err);
+        }
+
+        tData.contentfulState = req.body.contentfulState;
+        tData.title = req.body.title;
+        tData.imageUrl = req.body.imageUrl;
+        tData.priority = req.body.priority;
+        tData.count = req.body.count;
+        tData.tag = req.body.tag;
+        tData.tagTitle = req.body.tagTitle;
+        const consoleData = new Consoles(tData);
+
+        consoleData.save((err, saveConsoles) => {
+            if (err){
+                res.send(err)
+            }
+            Consoles.find().exec(function (err, consoles) {
+                if (err)
+                    res.send(err);
+                return res.status(200).json({consoles: consoles});
+            });
+        });
+    });
+}
+

@@ -30,4 +30,8 @@ module.exports = function (app) {
 
     //consoles
     apiRoutes.get('/consoles', ConsoleController.getConsoles);
+    apiRoutes.post('/consoles', ConsoleController.getConsoles);
+    apiRoutes.delete('/consoles/delete/:id', ConsoleController.delete);
+    apiRoutes.put('/consoles/update/:id', ConsoleController.update);
+
 }

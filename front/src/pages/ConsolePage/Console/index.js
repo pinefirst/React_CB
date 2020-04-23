@@ -33,18 +33,24 @@ class Consoles extends React.Component{
 
 
   componentDidMount() {
-    let {fetchConsoles} = this.props;
+    let {fetchConsoles,} = this.props;
     fetchConsoles();
   }
+
 
 
   render() {
 
     const {recentFeedback} = this.props;
-    let {consoles} = this.props;
+    let {consoles, deleteConsole, updateConsole,} = this.props;
+
     return (
       <div>
-        <ConsoleTable consoles={consoles} />
+        <ConsoleTable
+          consoles={consoles}
+          deleteConsole = {deleteConsole}
+          updateConsole = {updateConsole}
+        />
       </div>
 
     );
