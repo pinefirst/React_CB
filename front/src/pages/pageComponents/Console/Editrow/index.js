@@ -3,6 +3,21 @@ import './style.scss';
 import {Table, Input, Popconfirm} from "antd";
 
 
+const EditableCell = ({ editable, value, onChange }) => (
+  <div>
+    {editable ? (
+      <Input
+        style={{ margin: '-5px 0' }}
+        value={value}
+        onChange={e => onChange(e.target.value)}
+      />
+    ) : (
+      value
+    )}
+  </div>
+)
+
+
 class EditableTable extends React.Component{
 
   state = {
@@ -22,13 +37,14 @@ class EditableTable extends React.Component{
         title: 'Contentful State',
         dataIndex: 'contentfulState',
         width: '8%',
-
+        sorter: (a, b) => a.contentfulState - b.contentfulState,
+        render: (text, record) => this.renderColumns(text, record, 'contentfulState'),
       },
       {
         title: 'Title',
         dataIndex: 'title',
         width: '10%',
-
+        render:(text, record) => this.renderColumns(text, record, 'title'),
       },
       {
         title: 'Image URL',
@@ -40,25 +56,27 @@ class EditableTable extends React.Component{
         title: 'Priority',
         dataIndex: 'priority',
         width: '5%',
-
+        sorter: (a, b) => a.priority - b.priority,
+        render: (text, record) => this.renderColumns(text, record, 'priority'),
       },
       {
         title: 'Count',
         dataIndex: 'count',
         width: '10%',
-
+        sorter: (a, b) => a.count - b.count,
+        render: (text, record) => this.renderColumns(text, record, 'count'),
       },
       {
         title: 'Tag',
         dataIndex: 'tag',
         width: '10%',
-
+        render: (text, record) => this.renderColumns(text, record, 'tag'),
       },
       {
         title: 'TagTitle',
         dataIndex: 'tagTitle',
         width: '10%',
-
+        render: (text, record) => this.renderColumns(text, record, 'tagTitle'),
       },
       {
         title: 'operation',
@@ -67,6 +85,26 @@ class EditableTable extends React.Component{
       },
     ]
     let data = this.props.dataSource;
+  }
+
+
+  handleChange(value, key, column){
+    const newData = [...this.state.data];
+    const target = newData.filter(item => key === item._id[0]);
+    if (target){
+      target[column] = value;
+      this.setState({data : newData})
+    }
+  }
+
+
+  renderColumns(text, record, column) {
+    return (
+      <EditableCell
+        value={text}
+        onChange={value => this.handleChange(value, record._id, column)}
+      />
+    )
   }
 
 
