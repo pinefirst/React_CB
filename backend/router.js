@@ -7,6 +7,7 @@ const ROLE_OWNER = require('./constants').ROLE_OWNER;
 const ROLE_ADMIN = require('./constants').ROLE_ADMIN;
 
 const AuthenticationController = require('./controllers/authenticatoin');
+const ConsoleController = require('./controllers/console');
 
 const passportService = require('./config/passport');
 
@@ -26,4 +27,7 @@ module.exports = function (app) {
     authRoutes.post('/login',requireLogin, AuthenticationController.login);
 
     app.use('/api', apiRoutes);
+
+    //consoles
+    apiRoutes.get('/consoles', ConsoleController.getConsoles);
 }

@@ -88,11 +88,16 @@ class Layout extends React.Component{
       <ContainerQuery query={query}>
         {params => (
           <div className={className(params)} >
-            <AntHeader>
-              <Toolbar/>
-            </AntHeader>
-            <Routes/>
-            <Content/>
+            <AntLayout>
+              <AntLayout>
+                <AntHeader>
+                  <Toolbar/>
+                </AntHeader>
+                <Routes/>
+                <Content/>
+              </AntLayout>
+            </AntLayout>
+
           </div>
         )}
       </ContainerQuery>

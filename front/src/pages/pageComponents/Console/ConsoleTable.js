@@ -32,7 +32,9 @@ export default class ConsolesTable extends Component{
 
 
   _renderTable(filter){
-    return <EditableTable  />
+    const allData = this.props.consoles;
+    let data = allData
+    return <EditableTable dataSource={data}  />
   }
 
   render() {

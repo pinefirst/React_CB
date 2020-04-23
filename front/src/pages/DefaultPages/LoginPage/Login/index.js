@@ -43,7 +43,7 @@ class Login extends React.Component{
             <div className="col-xl-12">
               <div className="login__block__promo text-white text-center">
                 <h1 className="mb-3 text-white">
-                  <strong>WELCOME TO GGCONNECT</strong>
+                  <strong>WELCOME TO Login</strong>
                 </h1>
                 <p>Please input following information to login.</p>
               </div>

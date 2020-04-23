@@ -5,6 +5,9 @@ import {Table, Input, Popconfirm} from "antd";
 
 class EditableTable extends React.Component{
 
+  state = {
+    data:[],
+  };
 
   constructor(props){
     super(props);
@@ -63,11 +66,21 @@ class EditableTable extends React.Component{
 
       },
     ]
+    let data = this.props.dataSource;
+  }
+
+
+  componentDidMount() {
+    this.setState({data:this.props.dataSource})
+  }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    this.setState({data:nextProps.dataSource})
   }
 
   render() {
     return(
-      <Table bordered columns={this.columns}
+      <Table bordered columns={this.columns} dataSource={this.state.data}
       />
     )
   }
