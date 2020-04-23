@@ -109,6 +109,23 @@ class EditableTable extends React.Component{
   }
 
 
+  handleChangeTable = (pagination, filters, sorter) => {
+    if (this.state.pager){
+      const pager = {...this.state.pager};
+      if (pager.pageSize !== pagination.pageSize){
+        this.pageSize = pagination.pageSize;
+        pager.pageSize = pagination.pageSize;
+        pager.current = 1;
+      }else {
+        pager.current = pagination.current;
+      }
+      this.setState({
+        pager:pager
+      });
+    }
+  }
+
+
   renderColumns(text, record, column) {
     return (
       <EditableCell
@@ -130,7 +147,7 @@ class EditableTable extends React.Component{
   render() {
     const {pager} = this.state;
     return(
-      <Table bordered columns={this.columns} dataSource={this.state.data} pagination={pager}
+      <Table bordered columns={this.columns} dataSource={this.state.data} pagination={pager} onChange={this.handleChangeTable}
       />
     )
   }
