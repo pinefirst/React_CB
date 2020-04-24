@@ -3,6 +3,7 @@ import './style.scss';
 
 import ConsoleTable from "../../pageComponents/Console/ConsoleTable";
 import {fetchConsoles, createConsole, updateConsole, deleteConsole} from "../../../ducks/consoles";
+import ConsoleFilter from "./ConsoleFilter";
 import {connect} from "react-redux";
 
 const mapStateToProps = (state,props) => ({
@@ -46,6 +47,7 @@ class Consoles extends React.Component{
 
     return (
       <div>
+        <ConsoleFilter apiFn={this.props.fetchConsoles} />
         <ConsoleTable
           consoles={consoles}
           deleteConsole = {deleteConsole}
