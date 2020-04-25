@@ -1,10 +1,10 @@
 import 'rc-drawer/assets/index.css'
 import React from 'react'
-import DrawerMenu from 'rc-drawer'
+import DrawerMenu from 'rc-drawer'            //https://ant.design/components/drawer/
 import { MenuLeft } from './MenuLeft'
 import { MenuTop } from './MenuTop'
 import { connect } from 'react-redux'
-import { setLayoutState } from 'ducks/app'
+import { setLayoutState } from '../../../ducks/app'
 import './style.scss'
 
 const mapStateToProps = ({ app }, props) => ({

@@ -4,12 +4,14 @@ import {Spinner} from "react-redux-spinner";
 import {BackTop, Layout as AntLayout} from "antd";
 import {enquireScreen, unenquireScreen} from "enquire-js/index";
 import {ContainerQuery} from "react-container-query";
-import className from 'classnames';
+import classNames from 'classnames';
 
 import Routes from '../../../routes';
 import Content from '../../../components/LayoutComponents/Content';
 import Toolbar from "../Toolbar";
 import Loader from "../Loader";
+import Footer from "../Footer/index";
+import Menu from '../Menu/index';
 
 const AntContent = AntLayout.Content;
 const AntHeader = AntLayout.Header;
@@ -84,25 +86,31 @@ class Layout extends React.Component{
 
 
   render() {
-    const isMobile = !!this.state.isMobile;
-    return(
+    const isMobile = !!this.state.isMobile
+    return (
       <ContainerQuery query={query}>
         {params => (
-          <div className={className(params)} >
+          <div className={classNames(params)}>
             <AntLayout>
-              <Loader/>
-              <BackTop/>
+              {/*<LayoutState />*/}
+              <Loader />                                       {/*not sure working */}
+              <Spinner />
+              <BackTop />
+              <Routes />
+              <Menu isMobile={isMobile} />
+              {/*<SettingsSider />*/}
               <AntLayout>
                 <AntHeader>
-                  <Toolbar/>
+
                 </AntHeader>
-                <Routes/>
-                <AntContent>
-                  <Content/>
+                <AntContent style={{ height: '100%' }}>
+                  <Content />
                 </AntContent>
+                <AntFooter>
+                  <Footer />
+                </AntFooter>
               </AntLayout>
             </AntLayout>
-
           </div>
         )}
       </ContainerQuery>
