@@ -9,6 +9,7 @@ import className from 'classnames';
 import Routes from '../../../routes';
 import Content from '../../../components/LayoutComponents/Content';
 import Toolbar from "../Toolbar";
+import Loader from "../Loader";
 
 const AntContent = AntLayout.Content;
 const AntHeader = AntLayout.Header;
@@ -89,12 +90,16 @@ class Layout extends React.Component{
         {params => (
           <div className={className(params)} >
             <AntLayout>
+              <Loader/>
+              <BackTop/>
               <AntLayout>
                 <AntHeader>
                   <Toolbar/>
                 </AntHeader>
                 <Routes/>
-                <Content/>
+                <AntContent>
+                  <Content/>
+                </AntContent>
               </AntLayout>
             </AntLayout>
 

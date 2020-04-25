@@ -7,7 +7,7 @@ const ROLE_OWNER = require('./constants').ROLE_OWNER;
 const ROLE_ADMIN = require('./constants').ROLE_ADMIN;
 
 const AuthenticationController = require('./controllers/authenticatoin');
-const ConsoleController = require('./controllers/console');
+const ConsolesController = require('./controllers/console');
 
 const passportService = require('./config/passport');
 
@@ -29,9 +29,10 @@ module.exports = function (app) {
     app.use('/api', apiRoutes);
 
     //consoles
-    apiRoutes.get('/consoles', ConsoleController.getConsoles);
-    apiRoutes.post('/consoles', ConsoleController.getConsoles);
-    apiRoutes.delete('/consoles/delete/:id', ConsoleController.delete);
-    apiRoutes.put('/consoles/update/:id', ConsoleController.update);
+    apiRoutes.get('/consoles', ConsolesController.getConsoles);
+    apiRoutes.post('/consoles', ConsolesController.getConsoles);
+    apiRoutes.delete('/consoles/delete/:id', ConsolesController.delete);
+    apiRoutes.put('/consoles/update/:id', ConsolesController.update);
+    apiRoutes.post('/consoles/create', ConsolesController.create);
 
 }

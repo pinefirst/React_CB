@@ -43,7 +43,7 @@ class Consoles extends React.Component{
   render() {
 
     const {recentFeedback} = this.props;
-    let {consoles, deleteConsole, updateConsole,} = this.props;
+    let {consoles, deleteConsole, updateConsole,createConsole} = this.props;
 
     return (
       <div>
@@ -52,6 +52,7 @@ class Consoles extends React.Component{
           consoles={consoles}
           deleteConsole = {deleteConsole}
           updateConsole = {updateConsole}
+          createConsole = {createConsole}
         />
       </div>
 

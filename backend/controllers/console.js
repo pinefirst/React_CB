@@ -78,3 +78,35 @@ exports.update = function (req, res, next) {
     });
 }
 
+
+exports.create = function (req, res, next) {
+    let tData = new Consoles();
+    tData.contentfulState = parseInt(req.body.contentfulState);
+    tData._id = req.body._id;
+    tData.title = req.body.title;
+    tData.imageUrl = req.body.imageUrl;
+    tData.priority = parseInt(req.body.priority);
+    tData.count = parseInt(req.body.count);
+    tData.tag = req.body.tag;
+    tData.tagTitle = req.body.tagTitle;
+    if (req.body._id) {
+        Consoles.findById(req.body._id, (err, existingConsole) => {
+            if (existingConsole) {
+                return next(err);
+            }
+            tData.save((err, savedConsole) => {
+                if (err) {
+                    res.send(err);
+                }
+                Consoles.find().exec(function (err, consoles) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    return res.status(200).json({consoles: consoles});
+                });
+            });
+        })
+    }
+
+
+}
