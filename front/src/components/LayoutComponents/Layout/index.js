@@ -101,7 +101,7 @@ class Layout extends React.Component{
               {/*<SettingsSider />*/}
               <AntLayout>
                 <AntHeader>
-
+                  <Toolbar/>
                 </AntHeader>
                 <AntContent style={{ height: '100%' }}>
                   <Content />
