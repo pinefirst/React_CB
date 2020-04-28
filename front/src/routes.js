@@ -8,6 +8,7 @@ import HomePage from "./pages/DefaultPages/HomePage";
 import Page from "./components/LayoutComponents/Page";
 import ChatPage from "./pages/ChatsPage";
 import FriendsPage from "./pages/FriendRequestsPage";
+import GamesPage from "./pages/GamesPage/GamesPage";
 
 
 const loadable = loader =>
@@ -39,6 +40,9 @@ const loadableRoutes = {
   '/friendsPage': {
     component: loadable(() => import('pages/FriendRequestsPage')),
   },
+  '/gamesPage':{
+    component:loadable(() => import('pages/GamesPage/GamesPage')),
+  }
 
 }
 

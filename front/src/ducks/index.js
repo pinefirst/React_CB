@@ -9,6 +9,7 @@ import app, {logout} from "./app";
 import consoleReducer from '../reducers/consoles_reducer';
 import chatReducer from '../reducers/chats_reducer';
 import friendrequestsReducer from '../reducers/friendrequests_reducer';
+import games_reducer from "../reducers/games_reducer";
 
 import {
   STATIC_ERROR,
@@ -38,6 +39,7 @@ export default combineReducers({
   consoles:consoleReducer,
   chats:chatReducer,
   friendrequests:friendrequestsReducer,
+  games:games_reducer,
 
 });
 
@@ -163,3 +165,34 @@ export function deleteData(type, isAuthReq, url, dispatch) {
 export function errorHandler(dispatch, response, typ) {
 
 }
+
+
+export function getFromContentful(type, isAuthReq, url, dispatch) {
+  const {actionType, errorType, loaderType} = type;
+  dispatchLoader(dispatch, loaderType, true);
+  const requestUrl = Content_URL + url;
+  let headers = {};
+  console.log("URL: ", url);
+  axios.get(requestUrl, headers)
+    .then((response) => {
+      console.log(response);
+      getData(type, true, '/games', dispatch);
+      notification.open({
+        type: 'success',
+        message: 'GameData updated',
+        description:
+          'GameData was updated from Contentful!',
+      })
+    })
+    .catch((error) => {
+      errorHandler(dispatch, error.response, errorType);
+      dispatchLoader(dispatch, loaderType, false)
+      notification.open({
+        type: 'warning',
+        message: 'GameData Failed',
+        description:
+          'GameData could not updated from Contentful!',
+      })
+    });
+}
+
