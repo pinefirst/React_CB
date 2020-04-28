@@ -176,10 +176,11 @@ class EditableTable extends React.Component{
 
 
   render() {
+    const {pager} =  this.state;
     return(
       <Table
         bordered
-        columns={this.columns}
+        columns={this.columns} dataSource={this.state.data} pagination={pager}
       />
     )
   }
