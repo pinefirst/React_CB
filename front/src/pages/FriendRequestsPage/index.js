@@ -2,7 +2,7 @@ import React from "react";
 import Helmet from 'react-helmet';
 
 import Page from "../../components/LayoutComponents/Page";
-
+import FriendRequests from "./FriendRequests";
 
 class FriendsPage extends React.Component{
 
@@ -12,10 +12,11 @@ class FriendsPage extends React.Component{
   }
 
   render() {
+    const props = this.props
     return(
-      <Page>
+      <Page {...props}>
         <Helmet title="FiendsPages" />
-        <div>dddddd</div>
+        <FriendRequests/>
       </Page>
     )
   }
