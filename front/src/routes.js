@@ -6,6 +6,8 @@ import Loadable from 'react-loadable';
 import NotFoundPage from "./pages/DefaultPages/NotFoundPage";
 import HomePage from "./pages/DefaultPages/HomePage";
 import Page from "./components/LayoutComponents/Page";
+import ChatPage from "./pages/ChatsPage";
+import FriendsPage from "./pages/FriendRequestsPage";
 
 
 const loadable = loader =>
@@ -28,6 +30,16 @@ const loadableRoutes = {
   '/auth/register': {
     component: loadable(() => import('pages/DefaultPages/RegisterPage')),
   },
+
+
+  '/chatsPage': {
+    component: loadable(() => import('pages/ChatsPage')),
+  },
+
+  '/friendsPage': {
+    component: loadable(() => import('pages/FriendRequestsPage')),
+  },
+
 }
 
 

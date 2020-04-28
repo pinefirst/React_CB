@@ -8,6 +8,7 @@ const ROLE_ADMIN = require('./constants').ROLE_ADMIN;
 
 const AuthenticationController = require('./controllers/authenticatoin');
 const ConsolesController = require('./controllers/console');
+const ChatsController = require('./controllers/chats');
 
 const passportService = require('./config/passport');
 
@@ -35,4 +36,10 @@ module.exports = function (app) {
     apiRoutes.put('/consoles/update/:id', ConsolesController.update);
     apiRoutes.post('/consoles/create', ConsolesController.create);
 
+    //Chats Table
+    apiRoutes.get('/chats', ChatsController.getChats);
+    apiRoutes.post('/chats', ChatsController.getChats);
+    apiRoutes.delete('/chats/delete/:id', ChatsController.delete);
+    apiRoutes.put('/chats/update/:id', ChatsController.update);
+    apiRoutes.post('/chats/create', ChatsController.create);
 }

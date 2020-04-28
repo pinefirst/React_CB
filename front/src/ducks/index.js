@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import app, {logout} from "./app";
 import consoleReducer from '../reducers/consoles_reducer';
+import chatReducer from '../reducers/chats_reducer';
 
 import {
   STATIC_ERROR,
@@ -34,6 +35,8 @@ export default combineReducers({
 
   app,
   consoles:consoleReducer,
+  chats:chatReducer,
+
 });
 
 
