@@ -10,6 +10,7 @@ import consoleReducer from '../reducers/consoles_reducer';
 import chatReducer from '../reducers/chats_reducer';
 import friendrequestsReducer from '../reducers/friendrequests_reducer';
 import games_reducer from "../reducers/games_reducer";
+import messagesReducer from "../reducers/messages_reducer";
 
 import {
   STATIC_ERROR,
@@ -40,6 +41,7 @@ export default combineReducers({
   chats:chatReducer,
   friendrequests:friendrequestsReducer,
   games:games_reducer,
+  messages:messagesReducer,
 
 });
 

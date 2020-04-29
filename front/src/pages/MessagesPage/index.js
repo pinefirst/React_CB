@@ -17,7 +17,7 @@ class MessagesPage extends React.Component{
     return(
       <Page {...props}>
         <Helmet title="MessagesPage" />
-        <Messages/>
+        <Messages />
       </Page>
     )
   }

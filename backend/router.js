@@ -11,6 +11,7 @@ const ConsolesController = require('./controllers/console');
 const ChatsController = require('./controllers/chats');
 const FriendRequestsController = require('./controllers/friendrequests');
 const GamesController =  require('./controllers/game');
+const MessagesController = require('./controllers/messages');
 
 const passportService = require('./config/passport');
 
@@ -58,4 +59,11 @@ module.exports = function (app) {
     apiRoutes.delete('/games/delete/:id', GamesController.delete);
     apiRoutes.put('/games/update/:id', GamesController.update);
     apiRoutes.post('/games/create', GamesController.create);
+
+    //Messages Table
+    apiRoutes.get('/messages', MessagesController.getMessages);
+    apiRoutes.post('/messages', MessagesController.getMessages);
+    apiRoutes.delete('/messages/delete/:id', MessagesController.delete);
+    apiRoutes.put('/messages/update/:id', MessagesController.update);
+    apiRoutes.post('/messages/create', MessagesController.create);
 }
