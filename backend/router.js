@@ -10,6 +10,7 @@ const AuthenticationController = require('./controllers/authenticatoin');
 const ConsolesController = require('./controllers/console');
 const ChatsController = require('./controllers/chats');
 const FriendRequestsController = require('./controllers/friendrequests');
+const GamesController =  require('./controllers/game');
 
 const passportService = require('./config/passport');
 
@@ -50,4 +51,11 @@ module.exports = function (app) {
     apiRoutes.delete('/friendrequests/delete/:id', FriendRequestsController.delete);
     apiRoutes.put('/friendrequests/update/:id', FriendRequestsController.update);
     apiRoutes.post('/friendrequests/create', FriendRequestsController.create);
+
+    //games
+    apiRoutes.get('/games', GamesController.getGames);
+    apiRoutes.post('/games', GamesController.getGames);
+    apiRoutes.delete('/games/delete/:id', GamesController.delete);
+    apiRoutes.put('/games/update/:id', GamesController.update);
+    apiRoutes.post('/games/create', GamesController.create);
 }

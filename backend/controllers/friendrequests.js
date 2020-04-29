@@ -1,5 +1,6 @@
 const FriendRequests = require("../models/friend_request.model");
 
+
 exports.getFriendRequests = function (req, res, next) {
     console.log('--------', req)
     let date_start = req.body.date_start;
@@ -34,6 +35,7 @@ exports.getFriendRequests = function (req, res, next) {
 
 }
 
+
 exports.delete = function (req, res, next) {
     const fId = req.params.id;
     FriendRequests.findByIdAndRemove(fId, (err, deletedFriendRequest) => {
@@ -48,6 +50,7 @@ exports.delete = function (req, res, next) {
         })
     });
 }
+
 
 exports.update = function (req, res, next) {
     FriendRequests.findById(req.body._id, function (err, tData) {
@@ -74,6 +77,7 @@ exports.update = function (req, res, next) {
         });
     });
 }
+
 
 exports.create = function(req, res, next){
 
