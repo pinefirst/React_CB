@@ -42,7 +42,10 @@ const loadableRoutes = {
   },
   '/gamesPage':{
     component:loadable(() => import('pages/GamesPage/GamesPage')),
-  }
+  },
+  '/messagesPage': {
+    component: loadable(() => import('pages/MessagesPage')),
+  },
 
 }
 
