@@ -15,7 +15,7 @@
     "lint-staged": "^4.3.0",
     "lodash": "^4.17.10",
     "moment": "^2.19.3",
-    "node-sass": "^4.9.0",
+    "node-sass": "^7.0.0",
     "prettier": "^1.19.1",
     "prop-types": "^15.5.10",
     "querystring": "^0.2.0",
